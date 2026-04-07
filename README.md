@@ -78,7 +78,7 @@ $$P_\text{std} = 101325 \text{ Па}, \quad T_\text{std} = 293.15 \text{ К}$$
 
 Плотность при стандартных условиях:
 
-$$\rho_\text{std} = \frac{P_\text{std}\, M}{Z_\text{std}\, R\, T_\text{std}}$$
+$$\rho_\text{std} = \frac{P_\text{std}  M}{Z_\text{std}  R  T_\text{std}}$$
 
 где $Z_\text{std} \approx 1$ (при стандартных условиях).
 
@@ -86,11 +86,11 @@ $$\rho_\text{std} = \frac{P_\text{std}\, M}{Z_\text{std}\, R\, T_\text{std}}$$
 
 $B_g$ показывает, какой объём занимает 1 стандартный м³ газа при пластовых условиях:
 
-$$B_g = \frac{\rho_\text{std}}{\rho_\text{res}} = \frac{P_\text{std}\, Z_\text{res}\, T_\text{res}}{P_\text{res}\, Z_\text{std}\, T_\text{std}}$$
+$$B_g = \frac{\rho_\text{std}}{\rho_\text{res}} = \frac{P_\text{std}  Z_\text{res}  T_\text{res}}{P_\text{res}  Z_\text{std}  T_\text{std}}$$
 
 При $Z_\text{std} \approx 1$:
 
-$$\boxed{B_g(P) = \frac{P_\text{std}\, Z(P)\, T}{P\, T_\text{std}}}$$
+$$\boxed{B_g(P) = \frac{P_\text{std}  Z(P)  T}{P  T_\text{std}}}$$
 
 ### 2.2 Вязкость газа
 
@@ -98,7 +98,7 @@ $$\boxed{B_g(P) = \frac{P_\text{std}\, Z(P)\, T}{P\, T_\text{std}}}$$
 
 Формула кусочно-линейной интерполяции для точки $x_p$, попадающей между узлами $x_i$ и $x_{i+1}$:
 
-$$y_p = y_i + \frac{y_{i+1} - y_i}{x_{i+1} - x_i}\,(x_p - x_i)$$
+$$y_p = y_i + \frac{y_{i+1} - y_i}{x_{i+1} - x_i} (x_p - x_i)$$
 
 **Требование:** реализовать интерполятор без использования NumPy/SciPy внутри класса — только стандартные структуры Python.
 
@@ -110,27 +110,27 @@ $$y_p = y_i + \frac{y_{i+1} - y_i}{x_{i+1} - x_i}\,(x_p - x_i)$$
 
 Скорость фильтрации газа в пористой среде задаётся законом Дарси:
 
-$$v = -\frac{k}{\mu}\,\frac{dP}{dr}$$
+$$v = -\frac{k}{\mu} \frac{dP}{dr}$$
 
 где $k$ — проницаемость [Д], $\mu$ — вязкость газа, $r$ — радиус.
 
 Для стационарного радиального течения записывается уравнение неразрывности:
 
-$$\frac{1}{r}\frac{d}{dr}\!\left(r\,\frac{k}{\mu}\frac{dP}{dr}\right) = 0$$
+$$\frac{1}{r}\frac{d}{dr}\!\left(r \frac{k}{\mu}\frac{dP}{dr}\right) = 0$$
 
 Интегрируя от $r_w$ (радиус скважины) до $r_e$ (радиус контура питания) и переходя к объёмному дебиту при пластовых условиях $q_\text{res}$ [м³/сут], получаем:
 
-$$q_\text{res} = \frac{2\pi k h}{\mu \ln(r_e/r_w)}\,(P_\text{res} - P_\text{bhp})$$
+$$q_\text{res} = \frac{2\pi k h}{\mu \ln(r_e/r_w)} (P_\text{res} - P_\text{bhp})$$
 
 В промысловых единицах (мД, м, атм, м³/сут) вводится коэффициент $\beta$:
 
-$$\boxed{q_\text{std} = \frac{\beta\, k\, h}{\mu\, \ln(r_e/r_w)}\,(P_\text{res} - P_\text{bhp})}$$
+$$\boxed{q_\text{std} = \frac{\beta  k  h}{\mu  \ln(r_e/r_w)} (P_\text{res} - P_\text{bhp})}$$
 
 где $\beta = 0.00852702$ [ст.м³/(сут·мД·м·атм)] — коэффициент перевода единиц, $q_\text{std}$ — дебит в стандартных условиях [ст.м³/сут]. Параметры $k$, $h$, $r_e$, $r_w$ — свойства конкретной скважины (у разных скважин они могут различаться).
 
 Формулу удобно записать через коэффициент продуктивности $C_i$ скважины $i$:
 
-$$q_{\text{std},i} = C_i\,(P_\text{res} - P_{\text{bhp},i}), \quad C_i = \frac{\beta\, k_i\, h_i}{\mu\, \ln(r_{e,i}/r_{w,i})}$$
+$$q_{\text{std},i} = C_i (P_\text{res} - P_{\text{bhp},i}), \quad C_i = \frac{\beta  k_i  h_i}{\mu  \ln(r_{e,i}/r_{w,i})}$$
 
 Кривая $q_\text{std}(P_\text{bhp})$ при фиксированном $P_\text{res}$ называется **кривой притока (IPR — Inflow Performance Relationship)**.
 
@@ -140,17 +140,17 @@ $$q_{\text{std},i} = C_i\,(P_\text{res} - P_{\text{bhp},i}), \quad C_i = \frac{\
 
 $$\frac{d(m_\text{res})}{dt} = -\sum_{i=1}^{3} \dot{m}_i$$
 
-Масса газа в пласте: $m_\text{res} = \rho_\text{res}\, V_\text{res}$, массовый дебит $i$-й скважины: $\dot{m}_i = q_{\text{std},i}\,\rho_\text{std}$.
+Масса газа в пласте: $m_\text{res} = \rho_\text{res}  V_\text{res}$, массовый дебит $i$-й скважины: $\dot{m}_i = q_{\text{std},i} \rho_\text{std}$.
 
-Подставляя $m_\text{res} = \rho_\text{res} V_\text{res}$ и $\dot{m}_i = q_{\text{std},i}\,\rho_\text{std}$, получаем
+Подставляя $m_\text{res} = \rho_\text{res} V_\text{res}$ и $\dot{m}_i = q_{\text{std},i} \rho_\text{std}$, получаем
 
-$$\rho_\text{res}^{(t+1)} = \rho_\text{res}^{(t)} - \frac{\rho_\text{std}}{V_\text{res}}\sum_i q_{\text{std},i}\,\Delta t$$
+$$\rho_\text{res}^{(t+1)} = \rho_\text{res}^{(t)} - \frac{\rho_\text{std}}{V_\text{res}}\sum_i q_{\text{std},i} \Delta t$$
 
 а затем переходим к давлению через уравнение состояния ($\rho = PM / ZRT$).
 
 После дискретизации по времени с шагом $\Delta t$ [сут] (все величины вычисляются при $P = P_\text{res}^{(t)}$):
 
-$$\boxed{P_\text{res}^{(t+1)} = P_\text{res}^{(t)} - \frac{Z(P_\text{res}^{(t)})\, \rho_\text{std}}{\rho(P_\text{res}^{(t)})}\,\frac{\sum_i q_{\text{std},i}}{V_\text{res}}\,\Delta t}$$
+$$\boxed{P_\text{res}^{(t+1)} = P_\text{res}^{(t)} - \frac{Z(P_\text{res}^{(t)})  \rho_\text{std}}{\rho(P_\text{res}^{(t)})} \frac{\sum_i q_{\text{std},i}}{V_\text{res}} \Delta t}$$
 
 ---
 
@@ -158,7 +158,7 @@ $$\boxed{P_\text{res}^{(t+1)} = P_\text{res}^{(t)} - \frac{Z(P_\text{res}^{(t)})
 
 Уравнение применяется как к **НКТ скважин**, так и к **шлейфу**. Перепад давления вдоль трубы длиной $L$ складывается из двух слагаемых:
 
-$$\Delta P = \underbrace{\lambda\,\frac{L}{D}\,\frac{\rho v^2}{2}}_{\text{трение}} + \underbrace{\rho\, g\, H}_{\text{гидростатика}}$$
+$$\Delta P = \underbrace{\lambda \frac{L}{D} \frac{\rho v^2}{2}}_{\text{трение}} + \underbrace{\rho  g  H}_{\text{гидростатика}}$$
 
 где:
 - $\lambda$ — коэффициент гидравлического сопротивления (безразмерный),
@@ -169,19 +169,19 @@ $$\Delta P = \underbrace{\lambda\,\frac{L}{D}\,\frac{\rho v^2}{2}}_{\text{тре
 
 В рабочих единицах [атм]:
 
-$$\boxed{\Delta P\,[\text{атм}] = \frac{1}{101325}\left(\lambda\,\frac{L}{D}\,\frac{\rho v^2}{2} + \rho\, g\, H\right)}$$
+$$\boxed{\Delta P [\text{атм}] = \frac{1}{101325}\left(\lambda \frac{L}{D} \frac{\rho v^2}{2} + \rho  g  H\right)}$$
 
 #### Скорость газа в трубе
 
-Объёмный расход газа при пластовых условиях: $q_\text{res} = q_\text{std}\,B_g$ [м³/сут].
+Объёмный расход газа при пластовых условиях: $q_\text{res} = q_\text{std} B_g$ [м³/сут].
 
 Средняя скорость в поперечном сечении трубы:
 
-$$\boxed{v = \frac{4\,q_\text{std}\,B_g}{\pi\,D^2\,86400}} \quad [\text{м/с}]$$
+$$\boxed{v = \frac{4 q_\text{std} B_g}{\pi D^2 86400}} \quad [\text{м/с}]$$
 
 #### Число Рейнольдса
 
-$$Re = \frac{\rho\, v\, D}{\mu}$$
+$$Re = \frac{\rho  v  D}{\mu}$$
 
 где $\mu$ в [Па·с] = $\mu$ [сП] / 1000.
 
@@ -189,7 +189,7 @@ $$Re = \frac{\rho\, v\, D}{\mu}$$
 
 Для турбулентного течения в трубах с шероховатостью стенок применяется **неявное уравнение Колбрука–Уайта**:
 
-$$\boxed{\frac{1}{\sqrt{\lambda}} = -2\,\lg\!\left(\frac{\delta}{3.7\,D} + \frac{2.51}{Re\,\sqrt{\lambda}}\right)}$$
+$$\boxed{\frac{1}{\sqrt{\lambda}} = -2 \lg\!\left(\frac{\delta}{3.7 D} + \frac{2.51}{Re \sqrt{\lambda}}\right)}$$
 
 где $\delta$ — абсолютная шероховатость стенки [м]. Для стальных труб типичное значение $\delta = 0.000046$ м $= 0.046$ мм. **Внимание:** в формулах $\delta$ подставляется в **метрах**.
 
@@ -198,7 +198,7 @@ $$\boxed{\frac{1}{\sqrt{\lambda}} = -2\,\lg\!\left(\frac{\delta}{3.7\,D} + \frac
 1. Начальное приближение: $\lambda^{(0)} = 0.02$
 2. На каждом шаге $n$:
 
-$$\lambda^{(n+1)} = \left[-2\,\lg\!\left(\frac{\delta}{3.7\,D} + \frac{2.51}{Re\,\sqrt{\lambda^{(n)}}}\right)\right]^{-2}$$
+$$\lambda^{(n+1)} = \left[-2 \lg\!\left(\frac{\delta}{3.7 D} + \frac{2.51}{Re \sqrt{\lambda^{(n)}}}\right)\right]^{-2}$$
 
 3. Повторять до $|\lambda^{(n+1)} - \lambda^{(n)}| < 10^{-6}$
 
@@ -242,16 +242,16 @@ $$\boxed{P_\text{in,DCS} = \frac{P_\text{line}}{CR}}$$
 
 ### 2.6 Нахождение рабочей точки системы
 
-Рабочая точка — это набор дебитов и давлений, при котором вся система находится в гидравлическом равновесии. Неизвестные: $q_1,\, q_2,\, q_3,\, P_\text{man}$.
+Рабочая точка — это набор дебитов и давлений, при котором вся система находится в гидравлическом равновесии. Неизвестные: $q_1,  q_2,  q_3,  P_\text{man}$.
 
-Каждая скважина характеризуется собственным коэффициентом продуктивности $C_i = \dfrac{\beta\, k_i\, h_i}{\mu\, \ln(r_{e,i}/r_{w,i})}$ и собственной НКТ с перепадом давления $\Delta P_{\text{tube},i}$. Поэтому дебиты скважин в общем случае различны.
+Каждая скважина характеризуется собственным коэффициентом продуктивности $C_i = \dfrac{\beta  k_i  h_i}{\mu  \ln(r_{e,i}/r_{w,i})}$ и собственной НКТ с перепадом давления $\Delta P_{\text{tube},i}$. Поэтому дебиты скважин в общем случае различны.
 
 Система четырёх нелинейных уравнений:
 
 $$\begin{cases}
-q_1 = C_1\,\bigl(P_\text{res} - P_\text{man} - \Delta P_\text{tube,1}(q_1)\bigr) \\
-q_2 = C_2\,\bigl(P_\text{res} - P_\text{man} - \Delta P_\text{tube,2}(q_2)\bigr) \\
-q_3 = C_3\,\bigl(P_\text{res} - P_\text{man} - \Delta P_\text{tube,3}(q_3)\bigr) \\
+q_1 = C_1 \bigl(P_\text{res} - P_\text{man} - \Delta P_\text{tube,1}(q_1)\bigr) \\
+q_2 = C_2 \bigl(P_\text{res} - P_\text{man} - \Delta P_\text{tube,2}(q_2)\bigr) \\
+q_3 = C_3 \bigl(P_\text{res} - P_\text{man} - \Delta P_\text{tube,3}(q_3)\bigr) \\
 P_\text{man} = \dfrac{P_\text{line}}{CR} + \Delta P_\text{shlyf}(q_1 + q_2 + q_3 + q_\text{ext})
 \end{cases}$$
 
@@ -275,13 +275,13 @@ $$\text{дано:}\; P_\text{res}^{(0)}, \quad \text{задать:}\; N_\text{da
 2. Если $q_i^* < 0$ — установить $q_i^* = 0$ (скважина условно закрывается).
 3. Обновить пластовое давление по формуле материального баланса (2.3):
 
-$$P_\text{res}^{(t+1)} = P_\text{res}^{(t)} - \frac{Z(P_\text{res}^{(t)})\,\rho_\text{std}}{\rho(P_\text{res}^{(t)})}\,\frac{q_\text{total}^*}{V_\text{res}}\,\Delta t$$
+$$P_\text{res}^{(t+1)} = P_\text{res}^{(t)} - \frac{Z(P_\text{res}^{(t)}) \rho_\text{std}}{\rho(P_\text{res}^{(t)})} \frac{q_\text{total}^*}{V_\text{res}} \Delta t$$
 
 4. Вычислить накопленную добычу:
 
-$$G_p^{(t+1)} = G_p^{(t)} + q_\text{total}^*\,\Delta t$$
+$$G_p^{(t+1)} = G_p^{(t)} + q_\text{total}^* \Delta t$$
 
-где $q_\text{total}^* = \sum_i \max(0,\, q_i^*)$ — суммарный дебит скважин куста (без стороннего газа).
+где $q_\text{total}^* = \sum_i \max(0,  q_i^*)$ — суммарный дебит скважин куста (без стороннего газа).
 
 ---
 
