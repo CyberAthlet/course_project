@@ -148,7 +148,15 @@ $$m_\text{res} = \rho_\text{res} V_\text{res}$$
 
 $$\dot{m}_i = q_{\text{std},i} \rho_\text{std}$$
 
-Подставляя $m_\text{res} = \rho_\text{res} V_\text{res}$ и $\dot{m}_i = q_{\text{std},i} \rho_\text{std}$, получаем
+Подставляя
+
+$$m_\text{res} = \rho_\text{res} V_\text{res}$$
+
+и
+
+$$\dot{m}_i = q_{\text{std},i} \rho_\text{std}$$
+
+получаем
 
 $$\rho_\text{res}^{(t+1)} = \rho_\text{res}^{(t)} - \frac{\rho_\text{std}}{V_\text{res}}\sum_i q_{\text{std},i} \Delta t$$
 
