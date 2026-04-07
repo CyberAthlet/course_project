@@ -142,7 +142,11 @@ $$\frac{d(m_\text{res})}{dt} = -\sum_{i=1}^{3} \dot{m}_i$$
 
 Масса газа в пласте: $m_\text{res} = \rho_\text{res}\, V_\text{res}$, массовый дебит $i$-й скважины: $\dot{m}_i = q_{\text{std},i}\,\rho_\text{std}$.
 
-Подставляя $m_\text{res} = \rho_\text{res} V_\text{res}$ и $\dot{m}_i = q_{\text{std},i}\,\rho_\text{std}$, получаем $\rho_\text{res}^{(t+1)} = \rho_\text{res}^{(t)} - \frac{\rho_\text{std}}{V_\text{res}}\sum_i q_{\text{std},i}\,\Delta t$, а затем переходим к давлению через уравнение состояния ($\rho = PM / ZRT$).
+Подставляя $m_\text{res} = \rho_\text{res} V_\text{res}$ и $\dot{m}_i = q_{\text{std},i}\,\rho_\text{std}$, получаем
+
+$$\rho_\text{res}^{(t+1)} = \rho_\text{res}^{(t)} - \frac{\rho_\text{std}}{V_\text{res}}\sum_i q_{\text{std},i}\,\Delta t$$
+
+а затем переходим к давлению через уравнение состояния ($\rho = PM / ZRT$).
 
 После дискретизации по времени с шагом $\Delta t$ [сут] (все величины вычисляются при $P = P_\text{res}^{(t)}$):
 
