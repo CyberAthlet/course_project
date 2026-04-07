@@ -140,7 +140,13 @@ $$q_{\text{std},i} = C_i (P_\text{res} - P_{\text{bhp},i}), \quad C_i = \frac{\b
 
 $$\frac{d(m_\text{res})}{dt} = -\sum_{i=1}^{3} \dot{m}_i$$
 
-Масса газа в пласте: $m_\text{res} = \rho_\text{res}  V_\text{res}$, массовый дебит $i$-й скважины: $\dot{m}_i = q_{\text{std},i} \rho_\text{std}$.
+Масса газа в пласте:
+
+$$m_\text{res} = \rho_\text{res} V_\text{res}$$
+
+Массовый дебит $i$-й скважины:
+
+$$\dot{m}_i = q_{\text{std},i} \rho_\text{std}$$
 
 Подставляя $m_\text{res} = \rho_\text{res} V_\text{res}$ и $\dot{m}_i = q_{\text{std},i} \rho_\text{std}$, получаем
 
